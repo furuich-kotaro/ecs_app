@@ -1,0 +1,37 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV['MYSQL_DB_NAME'] %>
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("MYSQL_DB_NAME") { 'yoom_development' } %>
+  username: <%= ENV.fetch("MYSQL_USER") { 'root' } %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") { '' } %>
+  host: <%= ENV.fetch("MYSQL_HOST") { '127.0.0.1' } %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("MYSQL_TEST_DB_NAME") { 'yoom_test' } %>
+  username: <%= ENV.fetch("MYSQL_USER") { 'root' } %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") { '' } %>
+  host: <%= ENV.fetch("MYSQL_HOST") { '127.0.0.1' } %>
+
+
+staging:
+  <<: *default
+  database: <%= ENV['MYSQL_DB_NAME'] %>
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['MYSQL_DB_NAME'] %>
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
